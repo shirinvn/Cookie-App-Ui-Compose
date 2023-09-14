@@ -7,6 +7,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,6 +21,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,7 +32,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -74,15 +80,58 @@ fun Cookies() {
 
             }
             Spacer(modifier = Modifier.weight(1f))
-            Text(text = "See more", fontSize = 16.sp, color = Color.White
-            , modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .padding(end = 20.dp))
+
+
+            Column(Modifier.size(110.dp)) {
+                Spacer(modifier = Modifier.weight(1f))
+                Text(text = "See more", fontSize = 16.sp, color = Color.White
+                    , modifier = Modifier
+                        .padding(end = 20.dp))
+            }
+
         }
 
-        MainItem()
+
+        Spacer(modifier = Modifier.padding(top = 20.dp))
+        Row(modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceAround) {
+
+            MainItem()
+
+            MainItem()
+
+        }
+        Row(modifier = Modifier
+            .fillMaxWidth()
+            .height(80.dp)) {
+
+            Spacer(modifier = Modifier.padding(start = 20.dp))
+
+            Column(modifier = Modifier
+                .width(120.dp)
+                .align(Alignment.CenterVertically)
+            ) {
+
+                Spacer(modifier = Modifier.weight(1f))
+                Text(text = "Offers", fontSize = 32.sp, color = Color.White)
+
+            }
+            Spacer(modifier = Modifier.weight(1f))
+
+            Column(Modifier.size(110.dp)) {
+                Spacer(modifier = Modifier.weight(1f))
+                Text(text = "See more", fontSize = 16.sp, color = Color.White
+                    , modifier = Modifier
+                        .padding(end = 20.dp))
+            }
+
+        }
+
+        Offers()
     }
 }
+
+
 
 @Composable
 fun Toolbar(){
@@ -156,31 +205,102 @@ fun Toolbar(){
 @Composable
 fun MainItem(){
     Column(modifier = Modifier
-        .height(200.dp)
-        .width(200.dp)
-        .padding(20.dp))
+        .height(270.dp)
+        .width(170.dp))
     {
         Box(modifier = Modifier
             .height(270.dp)
-            .width(200.dp)) {
+            .width(170.dp)) {
             Card(modifier = Modifier
-                .width(120.dp)
-                .height(180.dp)
+                .width(170.dp)
+                .height(165.dp)
                 .align(Alignment.BottomCenter)
                 .clip(
-                    RoundedCornerShape(15.dp)
-                )) {
+                    RoundedCornerShape(
+                        topStart = 15.dp,
+                        topEnd = 15.dp,
+                        bottomEnd = 85.dp,
+                        bottomStart = 15.dp
+                    )
+                ),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF414141))
+            ) {
 
+                Column(modifier = Modifier.fillMaxSize()
+                 ) {
+                    Spacer(modifier = Modifier.padding(20.dp))
+
+                    Text(text = "Chocolate                    chips"
+                        , fontSize = 22.sp,
+                    modifier = Modifier.padding(start = 30.dp),
+                        color = Color.White
+                    )
+
+                    Text(text = "PERIMUM" , fontSize = 15.sp,
+                        modifier = Modifier.padding(start = 30.dp),
+                        color = Color.White)
+
+                    Text(text = "20 USD" , fontSize = 15.sp,
+                        modifier = Modifier.padding(start = 30.dp),
+                        style = TextStyle(fontWeight = FontWeight.Bold),
+                        color = Color.White
+                    )
+
+                    
+                }
             }
 
+
+
             Image(painter = painterResource(id = R.drawable.cookie2),
-                contentDescription = "",
-            modifier =Modifier.size(180.dp))
+                contentDescription = "", contentScale = ContentScale.FillBounds
+            , modifier = Modifier
+                    .size(150.dp)
+                    .align(Alignment.TopCenter))
+
+            Icon(painter = painterResource(id = R.drawable.arrow),
+                tint = Color.White,
+                contentDescription ="",
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .background(Color.Black)
+                    .size(55.dp)
+                    .scale(0.7f)
+                    .align(Alignment.BottomEnd))
         }
 
     }
 }
 
+
+@Composable
+fun Offers(){
+
+    Box(modifier = Modifier
+        .height(155.dp)
+        .fillMaxWidth()
+        .padding(start = 20.dp, end = 20.dp)) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(145.dp)
+                .align(Alignment.BottomCenter)
+                .clip(
+                    RoundedCornerShape(
+                        topStart = 15.dp,
+                        topEnd = 15.dp,
+                        bottomEnd = 85.dp,
+                        bottomStart = 15.dp
+                    )
+                ),
+            colors = CardDefaults.cardColors(containerColor = Color(0xFF414141))
+        ) {
+
+
+        }
+
+    }
+}
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
