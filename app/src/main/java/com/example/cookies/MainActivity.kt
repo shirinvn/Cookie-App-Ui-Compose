@@ -31,6 +31,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.res.painterResource
@@ -128,6 +130,7 @@ fun Cookies() {
         }
 
         Offers()
+        BottomNavigation()
     }
 }
 
@@ -265,7 +268,7 @@ fun MainItem(){
                     .clip(CircleShape)
                     .background(Color.Black)
                     .size(55.dp)
-                    .scale(0.7f)
+                    .scale(0.5f)
                     .align(Alignment.BottomEnd))
         }
 
@@ -279,7 +282,8 @@ fun Offers(){
     Box(modifier = Modifier
         .height(155.dp)
         .fillMaxWidth()
-        .padding(start = 20.dp, end = 20.dp)) {
+        .padding(start = 20.dp, end = 20.dp))
+    {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -296,11 +300,119 @@ fun Offers(){
             colors = CardDefaults.cardColors(containerColor = Color(0xFF414141))
         ) {
 
+            Row(modifier = Modifier.fillMaxSize()) {
+
+                Image(painter = painterResource(id = R.drawable.cookie3),
+                    contentDescription = "",
+                    modifier = Modifier.padding(15.dp))
+
+                Column(modifier = Modifier.fillMaxSize()
+                ) {
+                    Spacer(modifier = Modifier.padding(15.dp))
+
+                    Text(
+                        text = "Double " +"                            "+
+                                "chocolate", fontSize = 22.sp,
+                        modifier = Modifier.padding(start = 5.dp),
+                        color = Color.White
+                    )
+
+                    Text(
+                        text = "PERIMUM", fontSize = 15.sp,
+                        modifier = Modifier.padding(start = 10.dp, top = 5.dp),
+                        color = Color.White
+                    )
+
+
+                }
+
+            }
+
+
+        }
+        Icon(painter = painterResource(id = R.drawable.arrow),
+            tint = Color.White,
+            contentDescription ="",
+            modifier = Modifier
+                .clip(CircleShape)
+                .background(Color.Black)
+                .size(55.dp)
+                .scale(0.5f)
+                .align(Alignment.BottomEnd))
+
+    }
+}
+
+@Composable
+fun BottomNavigation(){
+
+
+    Box(modifier = Modifier.fillMaxWidth().height(130.dp)
+
+    ){
+
+        Box(modifier = Modifier.fillMaxWidth().height(70.dp)
+            .align(Alignment.BottomCenter)
+            .background(shape = RoundedCornerShape
+                (topEnd = 45.dp, topStart = 45.dp)
+
+                , color = Color(0xFF1B1A1A)
+
+            )
+        )
+
+
+
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .height(130.dp)
+            , horizontalArrangement = Arrangement.SpaceAround) {
+
+            NavItem(icon = R.drawable.home, name = "Home" )
+            NavItem(icon = R.drawable.search, name = "Search" )
+            NavItem(icon = R.drawable.premiuom, name = "Premium" )
+
 
         }
 
     }
+
+
 }
+
+
+@Composable
+fun NavItem(icon:Int, name:String){
+
+    Column(modifier = Modifier
+        .height(130.dp)
+        .width(100.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center) {
+
+
+        Icon(painter = painterResource(icon),
+            tint = Color.White,
+            contentDescription ="",
+            modifier = Modifier
+                .clip(CircleShape)
+                .background(Color(0xFF414141))
+                .size(65.dp)
+                .scale(0.5f)
+        )
+        Spacer(modifier = Modifier.padding(top = 10.dp))
+        Text(
+            text = name, fontSize = 15.sp,
+            color = Color.White
+        )
+
+    }
+}
+
+
+
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
