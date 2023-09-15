@@ -130,6 +130,7 @@ fun Cookies() {
         }
 
         Offers()
+        Spacer(modifier = Modifier.weight(1f))
         BottomNavigation()
     }
 }
@@ -347,16 +348,19 @@ fun Offers(){
 fun BottomNavigation(){
 
 
-    Box(modifier = Modifier.fillMaxWidth().height(130.dp)
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .height(130.dp)
 
     ){
 
-        Box(modifier = Modifier.fillMaxWidth().height(70.dp)
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .height(70.dp)
             .align(Alignment.BottomCenter)
-            .background(shape = RoundedCornerShape
-                (topEnd = 45.dp, topStart = 45.dp)
-
-                , color = Color(0xFF1B1A1A)
+            .background(
+                shape = RoundedCornerShape
+                    (topEnd = 45.dp, topStart = 45.dp), color = Color(0xFF1B1A1A)
 
             )
         )
