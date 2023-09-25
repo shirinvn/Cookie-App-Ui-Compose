@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -48,8 +49,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CookiesTheme {
-                // A surface container using the 'background' color from the theme
-
                     Cookies()
 
             }
@@ -62,8 +61,10 @@ fun Cookies() {
 
     Column(modifier = Modifier
         .fillMaxSize()
-        .background(Color(0xFF353334))) {
-        Spacer(modifier = Modifier.padding(top = 10.dp))
+        .background(Color(0xFF262627))) {
+        Spacer(modifier = Modifier.padding(top = 10.dp,
+            end = 20.dp,
+            start = 20.dp))
         Toolbar()
         Row(modifier = Modifier
             .fillMaxWidth()
@@ -77,16 +78,18 @@ fun Cookies() {
             ) {
 
                 Spacer(modifier = Modifier.weight(1f))
-                Text(text = "Cookies", fontSize = 28.sp, color = Color.White)
-                Text(text = "Premium", fontSize = 20.sp, color = Color.White)
+                Text(text = "Cookies", fontSize = 28.sp,
+                    color = Color.White)
+                Text(text = "Premium", fontSize = 20.sp,
+                    color = Color(0xFFFF8113))
 
             }
             Spacer(modifier = Modifier.weight(1f))
 
-
             Column(Modifier.size(110.dp)) {
                 Spacer(modifier = Modifier.weight(1f))
-                Text(text = "See more", fontSize = 16.sp, color = Color.White
+                Text(text = "See more", fontSize = 16.sp,
+                    color = Color(0xFFFF8113)
                     , modifier = Modifier
                         .padding(end = 20.dp))
             }
@@ -105,7 +108,8 @@ fun Cookies() {
         }
         Row(modifier = Modifier
             .fillMaxWidth()
-            .height(80.dp)) {
+            .height(80.dp)
+            .padding(end = 10.dp, start = 10.dp)) {
 
             Spacer(modifier = Modifier.padding(start = 20.dp))
 
@@ -122,9 +126,10 @@ fun Cookies() {
 
             Column(Modifier.size(110.dp)) {
                 Spacer(modifier = Modifier.weight(1f))
-                Text(text = "See more", fontSize = 16.sp, color = Color.White
+                Text(text = "See more", fontSize = 16.sp,
+                    color = Color(0xFFFF8113)
                     , modifier = Modifier
-                        .padding(end = 20.dp))
+                        .padding(end = 20.dp, bottom = 2.dp))
             }
 
         }
@@ -143,7 +148,7 @@ fun Toolbar(){
     Row(modifier = Modifier
         .fillMaxWidth()
         .height(90.dp)
-        .padding(start = 20.dp, end = 20.dp, top = 10.dp)
+        .padding(start = 25.dp, end = 25.dp, top = 10.dp)
     ) {
 
         Image(painter = painterResource(id = R.drawable.person),
@@ -184,7 +189,19 @@ fun Toolbar(){
                 .align(Alignment.BottomCenter)
                 .clip(
                     RoundedCornerShape(15.dp)
-                )) {
+                ),
+            colors = CardDefaults.cardColors(containerColor = Color.White)
+            )
+            {
+                Column( modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center) {
+
+                    Text(text = "6", fontSize = 18.sp, modifier = Modifier
+                        .padding(top = 10.dp))
+
+                    Text(text = "products", fontSize = 12.sp)
+                }
 
             }
 
@@ -198,26 +215,23 @@ fun Toolbar(){
                     .size(30.dp)
                     .scale(0.7f))
         }
-
-
-
     }
-
 }
 
 
 @Composable
 fun MainItem(){
     Column(modifier = Modifier
-        .height(270.dp)
-        .width(170.dp))
+        .height(260.dp)
+        .width(160.dp)
+    )
     {
         Box(modifier = Modifier
-            .height(270.dp)
-            .width(170.dp)) {
+            .height(260.dp)
+            .width(160.dp)) {
             Card(modifier = Modifier
-                .width(170.dp)
-                .height(165.dp)
+                .width(160.dp)
+                .height(155.dp)
                 .align(Alignment.BottomCenter)
                 .clip(
                     RoundedCornerShape(
@@ -227,7 +241,9 @@ fun MainItem(){
                         bottomStart = 15.dp
                     )
                 ),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFF414141))
+                colors = CardDefaults.cardColors(
+                    containerColor = Color(0xFF414141),
+                contentColor = Color(0xFFFF8113))
             ) {
 
                 Column(modifier = Modifier.fillMaxSize()
@@ -235,17 +251,27 @@ fun MainItem(){
                     Spacer(modifier = Modifier.padding(20.dp))
 
                     Text(text = "Chocolate                    chips"
-                        , fontSize = 22.sp,
-                    modifier = Modifier.padding(start = 30.dp),
+                        , fontSize = 20.sp,
+                    modifier = Modifier.padding(start = 20.dp),
                         color = Color.White
                     )
 
-                    Text(text = "PERIMUM" , fontSize = 15.sp,
-                        modifier = Modifier.padding(start = 30.dp),
-                        color = Color.White)
+                    Row {
 
-                    Text(text = "20 USD" , fontSize = 15.sp,
-                        modifier = Modifier.padding(start = 30.dp),
+                  Icon(painter = painterResource(id =  R.drawable.pre)
+                   , contentDescription = "",
+                      modifier = Modifier
+                          .padding(start = 20.dp, end = 5.dp)
+                          .size(18.dp),)
+
+                         Text(text = "PREMIUM" , fontSize = 13.sp,
+                       color = Color(0xFFFF8113))
+                      }
+
+
+                    Text(text = "20 USD" , fontSize = 13.sp,
+                        modifier = Modifier.padding(start = 20.dp,
+                            top = 8.dp),
                         style = TextStyle(fontWeight = FontWeight.Bold),
                         color = Color.White
                     )
@@ -259,7 +285,7 @@ fun MainItem(){
             Image(painter = painterResource(id = R.drawable.cookie2),
                 contentDescription = "", contentScale = ContentScale.FillBounds
             , modifier = Modifier
-                    .size(150.dp)
+                    .size(140.dp)
                     .align(Alignment.TopCenter))
 
             Icon(painter = painterResource(id = R.drawable.arrow),
@@ -276,14 +302,13 @@ fun MainItem(){
     }
 }
 
-
 @Composable
 fun Offers(){
 
     Box(modifier = Modifier
-        .height(155.dp)
+        .height(145.dp)
         .fillMaxWidth()
-        .padding(start = 20.dp, end = 20.dp))
+        .padding(start = 25.dp, end = 25.dp, top = 5.dp))
     {
         Card(
             modifier = Modifier
@@ -298,17 +323,20 @@ fun Offers(){
                         bottomStart = 15.dp
                     )
                 ),
-            colors = CardDefaults.cardColors(containerColor = Color(0xFF414141))
+            colors = CardDefaults.cardColors
+                (containerColor = Color(0xFF414141)
+            , contentColor = Color(0xFFFF8113)
+            )
         ) {
 
-            Row(modifier = Modifier.fillMaxSize()) {
+            Row(modifier = Modifier.fillMaxWidth()) {
 
                 Image(painter = painterResource(id = R.drawable.cookie3),
                     contentDescription = "",
                     modifier = Modifier.padding(15.dp))
 
-                Column(modifier = Modifier.fillMaxSize()
-                ) {
+                Column(modifier = Modifier.fillMaxHeight().width(120.dp))
+                {
                     Spacer(modifier = Modifier.padding(15.dp))
 
                     Text(
@@ -318,11 +346,24 @@ fun Offers(){
                         color = Color.White
                     )
 
-                    Text(
-                        text = "PERIMUM", fontSize = 15.sp,
-                        modifier = Modifier.padding(start = 10.dp, top = 5.dp),
-                        color = Color.White
-                    )
+
+
+
+
+                    Row {
+
+                        Icon(painter = painterResource(id =  R.drawable.pre)
+                            , contentDescription = "",
+                            modifier = Modifier
+                                .padding(start = 5.dp, end = 5.dp)
+                                .size(20.dp),)
+
+                        Text(text = "PREMIUM" , fontSize = 15.sp,
+                            color = Color(0xFFFF8113))
+                    }
+
+
+
 
 
                 }
@@ -347,50 +388,36 @@ fun Offers(){
 @Composable
 fun BottomNavigation(){
 
-
     Box(modifier = Modifier
-        .fillMaxWidth()
-        .height(130.dp)
-
+        .fillMaxWidth().height(110.dp)
     ){
-
-        Box(modifier = Modifier
-            .fillMaxWidth()
+        Box(modifier = Modifier.fillMaxWidth()
             .height(70.dp)
             .align(Alignment.BottomCenter)
             .background(
                 shape = RoundedCornerShape
-                    (topEnd = 45.dp, topStart = 45.dp), color = Color(0xFF1B1A1A)
-
-            )
-        )
-
-
+                    (topEnd = 40.dp, topStart = 40.dp),
+                color = Color(0xFF1B1A1A)
+            ))
 
         Row(
             Modifier
                 .fillMaxWidth()
                 .height(130.dp)
-            , horizontalArrangement = Arrangement.SpaceAround) {
+                .padding(end = 50.dp, start = 45.dp)
+            , horizontalArrangement = Arrangement.SpaceBetween) {
 
             NavItem(icon = R.drawable.home, name = "Home" )
             NavItem(icon = R.drawable.search, name = "Search" )
             NavItem(icon = R.drawable.premiuom, name = "Premium" )
-
-
-        }
-
-    }
-
-
-}
+        } } }
 
 
 @Composable
 fun NavItem(icon:Int, name:String){
 
     Column(modifier = Modifier
-        .height(130.dp)
+        .height(110.dp)
         .width(100.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center) {
@@ -402,12 +429,12 @@ fun NavItem(icon:Int, name:String){
             modifier = Modifier
                 .clip(CircleShape)
                 .background(Color(0xFF414141))
-                .size(65.dp)
+                .size(45.dp)
                 .scale(0.5f)
         )
         Spacer(modifier = Modifier.padding(top = 10.dp))
         Text(
-            text = name, fontSize = 15.sp,
+            text = name, fontSize = 12.sp,
             color = Color.White
         )
 
